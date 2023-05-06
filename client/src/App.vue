@@ -1,8 +1,8 @@
 <script setup lang="ts">
 </script>
 
-<template>
+<template lang="pug">
 </template>
 
-<style scoped>
+<style lang="sass" scoped>
 </style>
