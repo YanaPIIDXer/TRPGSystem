@@ -4,6 +4,7 @@
   "main": "./dist/exports.js",
   "license": "MIT",
   "scripts": {
+    "generate": "ts-node ./tools/PacketGenerate.ts",
     "build": "tsc && tsc -d"
   },
   "devDependencies": {

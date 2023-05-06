@@ -1,0 +1,5 @@
+export enum EPacketId {
+  {{#each packets}}
+  {{upperSnakeCase this.name}},
+  {{/each}}
+}

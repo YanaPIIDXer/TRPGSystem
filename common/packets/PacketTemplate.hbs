@@ -1,0 +1,28 @@
+import type { IPacket } from "../PacketBase";
+import { EPacketId } from "./PacketId";
+import msgpack from "msgpack5";
+const packer = msgpack();
+
+export class {{name}} implements IPacket {
+  constructor({{#each props}}{{#unless @first}}, {{/unless}}private _{{this.name}}: {{this.type}} = {{{initialValue this.type}}}{{/each}}) {}
+
+  {{#each props}}
+  get {{this.name}}(): {{this.type}} { return this.{{this.name}}; }
+  {{/each}}
+  
+  get packetId(): EPacketId { return EPacketId.{{upperSnakeCase name}}; }
+  
+  encode(): Buffer {
+    const datas: any[] = [this.packetId];
+
+    {{#each props}}
+    datas.push(this._{{this.name}});
+    {{/each}}
+    
+    return packer.encode([datas]).slice();
+  }
+
+  decode(buffer: Buffer): void {
+    [{{#each props}}{{#unless @first}}, {{/unless}}this._{{this.name}}{{/each}}] = packer.decode(buffer);
+  }
+}
