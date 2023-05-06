@@ -1,3 +1,6 @@
 export { IPacket } from "./Packet";
 export { EPacketId } from "./packets/PacketId";
 
+{{#each packets}}
+export {{this.name}} from "./packets/{{this.name}}";
+{{/each}}

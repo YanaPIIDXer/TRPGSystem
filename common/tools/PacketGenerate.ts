@@ -4,7 +4,7 @@ import * as handlebars from "handlebars";
 const packetJsons = fs.readdirSync("./packets", {
   withFileTypes: true,
   recursive: false,
-}).filter(file => file.isFile() && file.name.match(/\?*.json/));
+}).filter(file => file.isFile() && file.name.match(/\?*.json/));    // JSONファイルのみ列挙
 
 handlebars.registerHelper("initialValue", (type: string) => {
   switch (type) {
@@ -15,6 +15,7 @@ handlebars.registerHelper("initialValue", (type: string) => {
 });
 
 handlebars.registerHelper("upperSnakeCase", (str: string) => {
+  // スネークケースに変換してからtoUpperCase()する
   str = str.replace(/([A-Z])/g, '_$1').toUpperCase();
   if (str[0] === "_") {
     str = str.substring(1);
@@ -31,7 +32,7 @@ const packets: any[] = [];
     const jsonData = JSON.parse(fs.readFileSync("./packets/" + json.name).toString());
     packets.push(jsonData);
     const result = template(jsonData);
-    fs.writeFileSync("./src/packets/" + json.name.replace(/.json/, ".ts"), result);
+    fs.writeFileSync("./src/packets/" + json.name.replace(/.json/, ".ts"), result);   // 拡張子書き換え
   });
 }
 
@@ -39,5 +40,11 @@ const packets: any[] = [];
   const template = handlebars.compile(fs.readFileSync("./packets/PacketIdTemplate.hbs").toString());
   const result = template({ packets });
   fs.writeFileSync("./src/packets/PacketId.ts", result);
+}
+
+{
+  const template = handlebars.compile(fs.readFileSync("./packets/PacketExportTemplate.hbs").toString());
+  const result = template({ packets });
+  fs.writeFileSync("./src/exports.ts", result);
 }
 
