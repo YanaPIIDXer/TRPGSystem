@@ -26,7 +26,7 @@ handlebars.registerHelper("upperSnakeCase", (str: string) => {
 const packets: any[] = [];
 
 {
-  const template = handlebars.compile(fs.readFileSync("./packets/PacketTemplate.hbs").toString());
+  const template = handlebars.compile(fs.readFileSync("./templates/PacketTemplate.hbs").toString());
 
   packetJsons.forEach(json => {
     const jsonData = JSON.parse(fs.readFileSync("./packets/" + json.name).toString());
@@ -37,13 +37,13 @@ const packets: any[] = [];
 }
 
 {
-  const template = handlebars.compile(fs.readFileSync("./packets/PacketIdTemplate.hbs").toString());
+  const template = handlebars.compile(fs.readFileSync("./templates/PacketIdTemplate.hbs").toString());
   const result = template({ packets });
   fs.writeFileSync("./src/packets/PacketId.ts", result);
 }
 
 {
-  const template = handlebars.compile(fs.readFileSync("./packets/PacketExportTemplate.hbs").toString());
+  const template = handlebars.compile(fs.readFileSync("./templates/PacketExportTemplate.hbs").toString());
   const result = template({ packets });
   fs.writeFileSync("./src/exports.ts", result);
 }
