@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "ts-node ./src/server.ts"
+  },
   "devDependencies": {
     "@types/msgpack5": "^3.4.3",
     "@types/node": "^20.1.0",
+    "@types/ws": "^8.5.4",
     "typescript": "^5.0.4"
   },
   "dependencies": {
