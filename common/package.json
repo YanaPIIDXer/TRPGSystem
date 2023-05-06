@@ -1,8 +1,11 @@
 {
   "name": "@yanap/trpg-common",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./dist/exports.js",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc && tsc -d"
+  },
   "devDependencies": {
     "@types/node": "^20.1.0",
     "typescript": "^5.0.4"
