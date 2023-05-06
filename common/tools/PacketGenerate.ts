@@ -49,3 +49,9 @@ const packets: any[] = [];
   fs.writeFileSync("./src/exports.ts", result);
 }
 
+{
+  const template = handlebars.compile(fs.readFileSync("./templates/InstantiatePacketFunctionTemplate.hbs").toString());
+  const result = template({ packets });
+  fs.writeFileSync("./src/PacketFunctions.ts", result);
+}
+

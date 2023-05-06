@@ -1,0 +1,13 @@
+import { EPacketId } from "./packets/PacketId";
+{{#each packets}}
+import { {{this.name}} } from "./packets/{{this.name}}";
+{{/each}}
+
+export const instantiatePacket = (packetId: number) => {
+  switch (packetId) {
+    {{#each packets}}
+    case EPacketId.{{upperSnakeCase this.name}}: return new {{this.name}}();
+    {{/each}}
+  }
+  throw new Error(`Invalid Packet ID: ${packetId}`);
+}
