@@ -1,4 +1,4 @@
-import { IPacket } from '@yanap/trpg-common/Packet';
+import { IPacket } from '@yanap/trpg-common';
 /**
  * クライアントステートインタフェース
  */

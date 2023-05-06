@@ -1,7 +1,5 @@
-import { IPacket } from "@yanap/trpg-common/Packet";
-import { EPacketId } from "@yanap/trpg-common/packets/PacketId";
+import { IPacket, EPacketId, PacketJoinRequest } from "@yanap/trpg-common";
 import { IClientState } from "./ClientState";
-import { PacketJoinRequest } from "@yanap/trpg-common/packets/PacketJoinRequest";
 
 /**
  * クライアントステート: 参加

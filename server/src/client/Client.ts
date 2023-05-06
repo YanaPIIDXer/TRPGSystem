@@ -1,7 +1,7 @@
 import * as WebSocket from "ws";
 import { IClientState } from "./state/ClientState";
 import { ClientStateEntry } from "./state/ClientStateEntry";
-import { instantiatePacket } from "@yanap/trpg-common/PacketFunctions";
+import { instantiatePacket } from "@yanap/trpg-common";
 
 /**
  * クライアントクラス
