@@ -4,10 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@types/msgpack5": "^3.4.3",
     "@types/node": "^20.1.0",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@yanap/trpg-common": "file:../common/src"
+    "@yanap/trpg-common": "file:../common/src",
+    "msgpack5": "^6.0.2",
+    "ws": "^8.13.0"
   }
 }
