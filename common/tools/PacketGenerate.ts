@@ -10,6 +10,7 @@ handlebars.registerHelper("initialValue", (type: string) => {
   switch (type) {
     case "number": return "0";
     case "string": return `""`;
+    case "boolean": return "false";
   }
   return `new ${type}()`;
 });
