@@ -1,7 +1,7 @@
 {
   "name": "@yanap/trpg-common",
   "version": "1.0.0",
-  "main": "./dist/exports.js",
+  "main": "./src/exports.ts",
   "license": "MIT",
   "scripts": {
     "generate": "ts-node ./tools/PacketGenerate.ts",
