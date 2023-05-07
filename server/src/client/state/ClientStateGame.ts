@@ -1,4 +1,4 @@
-import { IPacket, EPacketId, PacketJoinRequest } from "@yanap/trpg-common";
+import { IPacket, EPacketId, PacketJoinRequest, PacketSystemMessage } from "@yanap/trpg-common";
 import { ClientStateBase } from "./ClientStateBase";
 import { Client } from "../Client";
 import { RoomManager } from "../../room/RoomManager";
@@ -44,7 +44,7 @@ export class ClientStateGame extends ClientStateBase {
    * @param e イベント
    */
   private onJoinOther(e: ClientJoinRoomEvent) {
-    console.info("JOIN CLIENT", e.context.uuid);
+    this.sendSystemMessage(`${"クライアント"}が入室しました`);
   }
 
   /**
@@ -52,6 +52,14 @@ export class ClientStateGame extends ClientStateBase {
    * @param e イベント
    */
   private onLeaveOther(e: ClientLeaveRoomEvent) {
-    console.info("LEAVE CLIENT", e.context.uuid);
+    this.sendSystemMessage(`${"クライアント"}が退室しました`);
+  }
+
+  /**
+   * システムメッセージ送信
+   * @param message システムメッセージ
+   */
+  private sendSystemMessage(message: string) {
+    this.owner.sendPacket(new PacketSystemMessage(message));
   }
 }
