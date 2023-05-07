@@ -2,7 +2,7 @@ import { decode } from '@msgpack/msgpack';
 import * as WebSocket from "ws";
 import { ClientStateBase } from "./state/ClientStateBase";
 import { ClientStateEntry } from "./state/ClientStateEntry";
-import { EPacketId, instantiatePacket } from "@yanap/trpg-common";
+import { EPacketId, IPacket, instantiatePacket } from "@yanap/trpg-common";
 
 /**
  * クライアントクラス
@@ -26,6 +26,19 @@ export class Client extends EventTarget {
       const packet = instantiatePacket(packetId);
       packet.decode(uint8Array);
       this.state.onHandlePacket(packet);
+    });
+  }
+
+  /**
+   * パケット送信
+   * @param packet パケット
+   */
+  sendPacket(packet: IPacket): void {
+    const buffer = packet.encode();
+    this.socket.send(buffer, (err) => {
+      if (err) {
+        console.error("Send Error", err.message);
+      }
     });
   }
 

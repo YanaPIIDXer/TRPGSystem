@@ -1,4 +1,4 @@
-import { IPacket, EPacketId, PacketJoinRequest } from "@yanap/trpg-common";
+import { IPacket, EPacketId, PacketJoinRequest, PacketJoinResponse } from "@yanap/trpg-common";
 import { ClientStateBase } from "./ClientStateBase";
 import { Client } from "../Client";
 import { ClientStateGame } from "./ClientStateGame";
@@ -25,6 +25,9 @@ export class ClientStateEntry extends ClientStateBase {
         {
           const p = packet as PacketJoinRequest;
           this.owner.changeState(new ClientStateGame(this.owner, p.userName));
+
+          const response = new PacketJoinResponse();
+          this.owner.sendPacket(response);
           break;
         }
     }
