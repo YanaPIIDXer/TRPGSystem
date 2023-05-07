@@ -11,11 +11,11 @@ export interface IPacket {
    * エンコード
    * @returns バッファ
    */
-  encode(): Buffer;
+  encode(): Uint8Array;
 
   /**
    * デコード
    * @param buffer バッファ
    */
-  decode(buffer: Buffer): void;
+  decode(buffer: Uint8Array): void;
 }

@@ -1,7 +1,6 @@
 import type { IPacket } from "../Packet";
 import { EPacketId } from "./PacketId";
-import msgpack from "msgpack5";
-const packer = msgpack();
+import { encode, decode } from "@msgpack/msgpack";
 
 export class {{name}} implements IPacket {
   constructor({{#each props}}{{#unless @first}}, {{/unless}}private _{{this.name}}: {{this.type}} = {{{initialValue this.type}}}{{/each}}) {}
@@ -12,17 +11,20 @@ export class {{name}} implements IPacket {
   
   get packetId(): EPacketId { return EPacketId.{{upperSnakeCase name}}; }
   
-  encode(): Buffer {
+  encode(): Uint8Array {
     const datas: any[] = [this.packetId];
 
     {{#each props}}
     datas.push(this._{{this.name}});
     {{/each}}
     
-    return packer.encode([datas]).slice();
+    return encode(datas);
   }
 
   decode(buffer: Buffer): void {
-    [{{#each props}}{{#unless @first}}, {{/unless}}this._{{this.name}}{{/each}}] = packer.decode(buffer);
+    const [_, {{#each props}}{{#unless @first}}, {{/unless}}{{this.name}}{{/each}}] = decode(buffer) as [EPacketId, {{#each props}}{{#unless @first}} ,{{/unless}}{{this.type}}{{/each}}];
+    {{#each props}}
+    this._{{this.name}} = {{this.name}};
+    {{/each}}
   }
 }

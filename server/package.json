@@ -7,14 +7,13 @@
     "dev": "ts-node ./src/server.ts"
   },
   "devDependencies": {
-    "@types/msgpack5": "^3.4.3",
     "@types/node": "^20.1.0",
     "@types/ws": "^8.5.4",
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@msgpack/msgpack": "^3.0.0-beta2",
     "@yanap/trpg-common": "file:../common/src",
-    "msgpack5": "^6.0.2",
     "ws": "^8.13.0"
   }
 }

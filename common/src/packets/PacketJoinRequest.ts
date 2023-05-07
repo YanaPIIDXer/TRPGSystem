@@ -1,7 +1,6 @@
 import type { IPacket } from "../Packet";
 import { EPacketId } from "./PacketId";
-import msgpack from "msgpack5";
-const packer = msgpack();
+import { encode, decode } from "@msgpack/msgpack";
 
 export class PacketJoinRequest implements IPacket {
   constructor(private _userName: string = "") {}
@@ -10,15 +9,16 @@ export class PacketJoinRequest implements IPacket {
   
   get packetId(): EPacketId { return EPacketId.PACKET_JOIN_REQUEST; }
   
-  encode(): Buffer {
+  encode(): Uint8Array {
     const datas: any[] = [this.packetId];
 
     datas.push(this._userName);
     
-    return packer.encode([datas]).slice();
+    return encode(datas);
   }
 
   decode(buffer: Buffer): void {
-    [this._userName] = packer.decode(buffer);
+    const [_, userName] = decode(buffer) as [EPacketId, string];
+    this._userName = userName;
   }
 }

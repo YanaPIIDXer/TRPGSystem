@@ -9,12 +9,11 @@
   },
   "devDependencies": {
     "@types/handlebars": "^4.1.0",
-    "@types/msgpack5": "^3.4.3",
     "@types/node": "^20.1.0",
     "handlebars": "^4.7.7",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "msgpack5": "^6.0.2"
+    "@msgpack/msgpack": "^3.0.0-beta2"
   }
 }

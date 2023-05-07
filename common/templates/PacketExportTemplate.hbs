@@ -1,4 +1,4 @@
-export { IPacket } from "./Packet";
+export type { IPacket } from "./Packet";
 export { EPacketId } from "./packets/PacketId";
 export { instantiatePacket } from "./PacketFunctions";
 
