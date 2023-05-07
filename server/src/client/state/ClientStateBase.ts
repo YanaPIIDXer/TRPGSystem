@@ -15,4 +15,10 @@ export abstract class ClientStateBase {
    * @param packet パケット
    */
   abstract onHandlePacket(packet: IPacket): void;
+
+  /**
+   * 終了処理
+   * デストラクタの代わり
+   */
+  finalize(): void {}
 }

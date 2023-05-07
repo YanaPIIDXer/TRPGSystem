@@ -53,6 +53,7 @@ export class Client extends EventTarget {
    * @param state ステート
    */
   changeState(state: ClientStateBase): void {
+    this.state.finalize();
     this.state = state;
   }
 }
