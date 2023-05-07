@@ -17,7 +17,7 @@ export class PacketJoinRequest implements IPacket {
     return encode(datas);
   }
 
-  decode(buffer: Buffer): void {
+  decode(buffer: Uint8Array): void {
     const [_, userName] = decode(buffer) as [EPacketId, string];
     this._userName = userName;
   }

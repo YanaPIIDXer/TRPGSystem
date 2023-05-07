@@ -15,7 +15,7 @@ export class PacketJoinResponse implements IPacket {
     return encode(datas);
   }
 
-  decode(buffer: Buffer): void {
+  decode(buffer: Uint8Array): void {
     const [_, ] = decode(buffer) as [EPacketId, ];
   }
 }
