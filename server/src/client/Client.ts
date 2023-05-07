@@ -1,7 +1,8 @@
+import { decode } from '@msgpack/msgpack';
 import * as WebSocket from "ws";
 import { IClientState } from "./state/ClientState";
 import { ClientStateEntry } from "./state/ClientStateEntry";
-import { instantiatePacket } from "@yanap/trpg-common";
+import { EPacketId, instantiatePacket } from "@yanap/trpg-common";
 
 /**
  * クライアントクラス
@@ -18,11 +19,12 @@ export class Client extends EventTarget {
     socket.on("close", () => {
       this.dispatchEvent(new Event("disconnected"));
     });
-    socket.on("message", (data: string | Buffer) => {
-      const buffer = Buffer.from(data);
-      const packetId = buffer.readUint8(0);
+    socket.on("message", (data: ArrayBuffer | Uint8Array) => {
+      const uint8Array = data instanceof Uint8Array ? data : new Uint8Array(data);
+      const decodedData = decode(uint8Array) as Uint8Array;
+      const packetId = decodedData[0] as EPacketId;
       const packet = instantiatePacket(packetId);
-      packet.decode(buffer);
+      packet.decode(uint8Array);
       this.state.onHandlePacket(packet);
     });
   }

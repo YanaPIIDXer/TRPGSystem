@@ -10,7 +10,7 @@ export class PacketJoinRequest implements IPacket {
   get packetId(): EPacketId { return EPacketId.PACKET_JOIN_REQUEST; }
   
   encode(): Uint8Array {
-    const datas: any[] = [this.packetId];
+    const datas: any[] = [this.packetId as number];
 
     datas.push(this._userName);
     
@@ -18,7 +18,7 @@ export class PacketJoinRequest implements IPacket {
   }
 
   decode(buffer: Uint8Array): void {
-    const [_, userName] = decode(buffer) as [EPacketId, string];
+    const [_, userName] = decode(buffer) as [number, string];
     this._userName = userName;
   }
 }

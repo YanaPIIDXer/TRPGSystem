@@ -12,7 +12,7 @@ export class {{name}} implements IPacket {
   get packetId(): EPacketId { return EPacketId.{{upperSnakeCase name}}; }
   
   encode(): Uint8Array {
-    const datas: any[] = [this.packetId];
+    const datas: any[] = [this.packetId as number];
 
     {{#each props}}
     datas.push(this._{{this.name}});
@@ -22,7 +22,7 @@ export class {{name}} implements IPacket {
   }
 
   decode(buffer: Uint8Array): void {
-    const [_, {{#each props}}{{#unless @first}}, {{/unless}}{{this.name}}{{/each}}] = decode(buffer) as [EPacketId, {{#each props}}{{#unless @first}} ,{{/unless}}{{this.type}}{{/each}}];
+    const [_, {{#each props}}{{#unless @first}}, {{/unless}}{{this.name}}{{/each}}] = decode(buffer) as [number, {{#each props}}{{#unless @first}} ,{{/unless}}{{this.type}}{{/each}}];
     {{#each props}}
     this._{{this.name}} = {{this.name}};
     {{/each}}

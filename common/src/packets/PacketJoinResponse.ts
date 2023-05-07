@@ -9,13 +9,13 @@ export class PacketJoinResponse implements IPacket {
   get packetId(): EPacketId { return EPacketId.PACKET_JOIN_RESPONSE; }
   
   encode(): Uint8Array {
-    const datas: any[] = [this.packetId];
+    const datas: any[] = [this.packetId as number];
 
     
     return encode(datas);
   }
 
   decode(buffer: Uint8Array): void {
-    const [_, ] = decode(buffer) as [EPacketId, ];
+    const [_, ] = decode(buffer) as [number, ];
   }
 }
