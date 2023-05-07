@@ -13,8 +13,9 @@ export class Client extends EventTarget {
   /**
    * コンストラクタ
    * @param socket Socket
+   * @param uuid UUID
    */
-  constructor (private socket: WebSocket) {
+  constructor (private socket: WebSocket, private _uuid: number) {
     super();
     socket.on("close", () => {
       this.dispatchEvent(new Event("disconnected"));
@@ -28,6 +29,11 @@ export class Client extends EventTarget {
       this.state.onHandlePacket(packet);
     });
   }
+
+  /**
+   * UUID
+   */
+  get uuid(): number { return this._uuid; }
 
   /**
    * パケット送信
