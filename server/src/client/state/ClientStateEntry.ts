@@ -24,7 +24,7 @@ export class ClientStateEntry extends ClientStateBase {
       case EPacketId.PACKET_JOIN_REQUEST:
         {
           const p = packet as PacketJoinRequest;
-          this.owner.changeState(new ClientStateGame(this.owner, p.userName));
+          this.owner.changeState(new ClientStateGame(this.owner));
 
           const response = new PacketJoinResponse();
           this.owner.sendPacket(response);

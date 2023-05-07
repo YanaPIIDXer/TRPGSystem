@@ -1,3 +1,4 @@
+import { Client } from "../Client";
 import { ClientEvent } from "./ClientEvent";
 
 /**
@@ -15,10 +16,10 @@ export { eventNames as clientRoomEventName };
 export class ClientJoinRoomEvent extends ClientEvent {
   /**
    * コンストラクタ
-   * @param uuid UUID
+   * @param client クライアント
    */
-  constructor(uuid: number) {
-    super(eventNames.join, uuid);
+  constructor(client: Client) {
+    super(eventNames.join, client.makeContext());
   }
 }
 
@@ -28,9 +29,9 @@ export class ClientJoinRoomEvent extends ClientEvent {
 export class ClientLeaveRoomEvent extends ClientEvent {
   /**
    * コンストラクタ
-   * @param uuid UUID
+   * @param client クライアント
    */
-  constructor(uuid: number) {
-    super(eventNames.leave, uuid);  
+  constructor(client: Client) {
+    super(eventNames.leave, client.makeContext());  
   }
 }

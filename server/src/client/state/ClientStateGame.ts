@@ -11,7 +11,7 @@ export class ClientStateGame extends ClientStateBase {
    * コンストラクタ
    * @param owner 所有者のクライアント
    */
-  constructor (owner: Client, private userName: string) {
+  constructor (owner: Client) {
     super(owner);
     RoomManager.instance.getRoom().join(this.owner);
   }
@@ -29,6 +29,6 @@ export class ClientStateGame extends ClientStateBase {
    * 終了処理
    */
   finalize() {
-    RoomManager.instance.getRoom().leave(this.owner.uuid);
+    RoomManager.instance.getRoom().leave(this.owner);
   }
 }

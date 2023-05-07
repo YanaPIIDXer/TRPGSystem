@@ -36,6 +36,14 @@ export class Client extends EventTarget {
   get uuid(): number { return this._uuid; }
 
   /**
+   * コンテキスト生成
+   * @returns クライアントコンテキスト
+   */
+  makeContext(): ClientContext {
+    return new ClientContext(this._uuid);
+  }
+
+  /**
    * パケット送信
    * @param packet パケット
    */
@@ -56,4 +64,21 @@ export class Client extends EventTarget {
     this.state.finalize();
     this.state = state;
   }
+}
+
+/**
+ * クライアントの情報
+ * 外部参照用
+ */
+export class ClientContext {
+  /**
+   * コンストラクタ
+   * @param _uuid UUID
+   */
+  constructor(private _uuid: number) {}
+
+  /**
+   * UUID
+   */
+  get uuid(): number { return this._uuid; }
 }
