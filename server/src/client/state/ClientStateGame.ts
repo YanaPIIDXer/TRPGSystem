@@ -12,7 +12,6 @@ export class ClientStateGame extends ClientStateBase {
    */
   constructor (owner: Client, private userName: string) {
     super(owner);
-    console.info("Join User", this.userName);
   }
   
   /**

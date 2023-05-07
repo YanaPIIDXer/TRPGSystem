@@ -6,7 +6,6 @@ const server = new WebSocket.Server({ port: 3000 });
 const clientManager = new ClientManager();
 
 server.on("connection", (socket: WebSocket) => {
-  console.info("Client connected.");
   clientManager.addClient(new Client(socket));
 });
 
