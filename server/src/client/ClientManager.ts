@@ -17,6 +17,7 @@ export class ClientManager {
     const client = new Client(socket, this.nextUuid++);
     this.clients.push(client);
     client.addEventListener("disconnected", () => {
+      client.finalize();
       this.clients = this.clients.filter(c => c !== client);
     });
 

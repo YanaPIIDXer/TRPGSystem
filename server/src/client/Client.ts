@@ -64,6 +64,14 @@ export class Client extends EventTarget {
     this.state.finalize();
     this.state = state;
   }
+
+  /**
+   * 終了処理
+   * デストラクタの代わり
+   */
+  finalize(): void {
+    this.state.finalize();
+  }
 }
 
 /**
