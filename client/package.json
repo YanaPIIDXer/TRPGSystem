@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@msgpack/msgpack": "^3.0.0-beta2",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.14.2",
