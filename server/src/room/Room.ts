@@ -12,8 +12,8 @@ export class Room extends EventTarget {
    * @param client クライアント
    */
   join(client: Client): void {
-    this.clients.set(client.uuid, client);
     this.dispatchEvent(new ClientJoinRoomEvent(client));
+    this.clients.set(client.uuid, client);
   }
 
   /**
@@ -21,7 +21,7 @@ export class Room extends EventTarget {
    * @param client クライアント 
    */
   leave(client: Client): void {
-    this.dispatchEvent(new ClientLeaveRoomEvent(client));
     this.clients.delete(client.uuid);
+    this.dispatchEvent(new ClientLeaveRoomEvent(client));
   }
 }
