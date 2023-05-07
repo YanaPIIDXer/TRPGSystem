@@ -10,8 +10,9 @@ export class ClientStateGame extends ClientStateBase {
    * コンストラクタ
    * @param owner 所有者のクライアント
    */
-  constructor (owner: Client) {
+  constructor (owner: Client, private userName: string) {
     super(owner);
+    console.info("Join User", this.userName);
   }
   
   /**

@@ -24,9 +24,7 @@ export class ClientStateEntry extends ClientStateBase {
       case EPacketId.PACKET_JOIN_REQUEST:
         {
           const p = packet as PacketJoinRequest;
-          // TODO: 名前をどこかで設定
-          console.info("Join User", p.userName);
-          this.owner.changeState(new ClientStateGame(this.owner));
+          this.owner.changeState(new ClientStateGame(this.owner, p.userName));
           break;
         }
     }
