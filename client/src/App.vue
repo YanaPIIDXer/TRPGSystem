@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { inject } from "vue";
 import { PacketJoinRequest } from "@yanap/trpg-common";
 import { Client } from "./client/Client";
 import { decode } from '@msgpack/msgpack';
@@ -7,6 +8,7 @@ import { instantiatePacket } from "@yanap/trpg-common";
 
 const socket = new WebSocket("ws://localhost:3000");
 const client = new Client(socket);
+inject("client", client);
 
 /*
 socket.onopen = (() => {
