@@ -5,7 +5,7 @@ import { encode, decode } from "@msgpack/msgpack";
 export class PacketJoinRequest implements IPacket {
   constructor(private _userName: string = "") {}
 
-  get userName(): string { return this.userName; }
+  get userName(): string { return this._userName; }
   
   get packetId(): EPacketId { return EPacketId.PACKET_JOIN_REQUEST; }
   
