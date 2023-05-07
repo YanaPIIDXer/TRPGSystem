@@ -4,11 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node ./src/server.ts"
+    "dev": "ts-node ./src/server.ts",
+    "puml": "tplant --input ./src/**/*.ts --output ./puml/classes.puml"
   },
   "devDependencies": {
     "@types/node": "^20.1.0",
     "@types/ws": "^8.5.4",
+    "tplant": "^3.1.0",
     "typescript": "^5.0.4"
   },
   "dependencies": {
