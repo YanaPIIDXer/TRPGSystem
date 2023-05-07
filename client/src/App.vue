@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { inject } from "vue";
+import { provide } from "vue";
 import { Client } from "./client/Client";
 
 const socket = new WebSocket("ws://localhost:3000");
 const client = new Client(socket);
-inject("client", client);
+provide("client", client);
 
 </script>
 
 <template lang="pug">
+.root
+  router-view
 </template>
 
 <style lang="sass" scoped>
