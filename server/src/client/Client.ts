@@ -1,6 +1,6 @@
 import { decode } from '@msgpack/msgpack';
 import * as WebSocket from "ws";
-import { IClientState } from "./state/ClientState";
+import { ClientStateBase } from "./state/ClientStateBase";
 import { ClientStateEntry } from "./state/ClientStateEntry";
 import { EPacketId, instantiatePacket } from "@yanap/trpg-common";
 
@@ -8,7 +8,7 @@ import { EPacketId, instantiatePacket } from "@yanap/trpg-common";
  * クライアントクラス
  */
 export class Client extends EventTarget {
-  private state: IClientState = new ClientStateEntry();
+  private state: ClientStateBase = new ClientStateEntry(this);
   
   /**
    * コンストラクタ
@@ -27,5 +27,13 @@ export class Client extends EventTarget {
       packet.decode(uint8Array);
       this.state.onHandlePacket(packet);
     });
+  }
+
+  /**
+   * ステート切り替え
+   * @param state ステート
+   */
+  changeState(state: ClientStateBase): void {
+    this.state = state;
   }
 }

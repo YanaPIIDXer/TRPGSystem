@@ -1,12 +1,11 @@
 import { IPacket, EPacketId, PacketJoinRequest } from "@yanap/trpg-common";
 import { ClientStateBase } from "./ClientStateBase";
 import { Client } from "../Client";
-import { ClientStateGame } from "./ClientStateGame";
 
 /**
- * クライアントステート: 参加
+ * クライアントステート: ゲーム
  */
-export class ClientStateEntry extends ClientStateBase {
+export class ClientStateGame extends ClientStateBase {
   /**
    * コンストラクタ
    * @param owner 所有者のクライアント
@@ -21,14 +20,6 @@ export class ClientStateEntry extends ClientStateBase {
    */
   onHandlePacket(packet: IPacket): void {
     switch (packet.packetId) {
-      case EPacketId.PACKET_JOIN_REQUEST:
-        {
-          const p = packet as PacketJoinRequest;
-          // TODO: 名前をどこかで設定
-          console.info("Join User", p.userName);
-          this.owner.changeState(new ClientStateGame(this.owner));
-          break;
-        }
     }
   }
 }
