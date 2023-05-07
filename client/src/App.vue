@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { PacketJoinRequest } from "@yanap/trpg-common";
+import { Client } from "./client/Client";
 import { decode } from '@msgpack/msgpack';
 import type { EPacketId } from "@yanap/trpg-common";
 import { instantiatePacket } from "@yanap/trpg-common";
 
 const socket = new WebSocket("ws://localhost:3000");
+const client = new Client(socket);
+
+/*
 socket.onopen = (() => {
   const packet = new PacketJoinRequest("キャベツ 太郎");
   const buffer = packet.encode();
@@ -25,6 +29,7 @@ socket.onmessage = async (e: MessageEvent<Blob>) => {
   const packet = instantiatePacket(packetId);
   packet.decode(buffer);
 };
+*/
 
 </script>
 
