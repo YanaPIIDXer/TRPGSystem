@@ -1,9 +1,10 @@
 import { Client } from "../client/Client";
+import { ClientJoinRoomEvent, ClientLeaveRoomEvent } from "../client/events/RoomClientEvents";
 
 /**
  * ルームクラス
  */
-export class Room {
+export class Room extends EventTarget {
   private clients: Map<number, Client> = new Map<number, Client>();
 
   /**
@@ -12,6 +13,7 @@ export class Room {
    */
   join(client: Client): void {
     this.clients.set(client.uuid, client);
+    this.dispatchEvent(new ClientJoinRoomEvent(client.uuid));
   }
 
   /**
@@ -19,6 +21,7 @@ export class Room {
    * @param clientUuid クライアントのUUID 
    */
   leave(clientUuid: number): void {
+    this.dispatchEvent(new ClientLeaveRoomEvent(clientUuid));
     this.clients.delete(clientUuid);
   }
 }
