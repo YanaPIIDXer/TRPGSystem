@@ -4,3 +4,4 @@ export { instantiatePacket } from "./PacketFunctions";
 
 export { PacketJoinRequest } from "./packets/PacketJoinRequest";
 export { PacketJoinResponse } from "./packets/PacketJoinResponse";
+export { PacketSystemMessage } from "./packets/PacketSystemMessage";
